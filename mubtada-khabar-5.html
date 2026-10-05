@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>المبتدأ والخبر</title>
+<style>
+:root{--bg:#f6f3ec;--pn:#fff;--ink:#1d2a2a;--mut:#5f6b6b;--ln:#ddd6c6;--mb:#0a7b83;--mbs:#d6eef0;--kh:#c2540a;--khs:#fbe4d3;--ok:#1d8a4b;--no:#c0392b;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121a1a;--pn:#1b2626;--ink:#eaf1f0;--mut:#9bb0ae;--ln:#2f4140;--mb:#4fd1d9;--mbs:#16393c;--kh:#ff9a5c;--khs:#43271a;--ok:#4cd68a;--no:#ff7b6b}}
+:root[data-theme="dark"]{--bg:#121a1a;--pn:#1b2626;--ink:#eaf1f0;--mut:#9bb0ae;--ln:#2f4140;--mb:#4fd1d9;--mbs:#16393c;--kh:#ff9a5c;--khs:#43271a;--ok:#4cd68a;--no:#ff7b6b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Naskh Arabic","Amiri","Traditional Arabic","Segoe UI",Tahoma,serif;font-size:1.05rem;line-height:1.9}
+main{max-width:720px;margin:0 auto;padding:14px}
+h1{font-size:1.5rem;margin:6px 0}
+h2{font-size:1.15rem;margin:0 0 6px}
+nav{display:flex;flex-wrap:wrap;gap:6px;padding-bottom:6px;margin-bottom:10px}
+nav button{flex:1 1 auto;white-space:nowrap}
+button{font:inherit;padding:8px 14px;border-radius:10px;border:1px solid var(--ln);background:var(--pn);color:var(--ink);cursor:pointer;min-height:44px}
+button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+button:focus-visible{outline:3px solid var(--mb);outline-offset:2px}
+.card{background:var(--pn);border:1px solid var(--ln);border-radius:12px;padding:14px;margin-bottom:12px}
+.sent{font-size:1.7rem;line-height:2.2;text-align:center;margin:8px 0}
+.m{background:var(--mbs);color:var(--mb);border-radius:8px;padding:0 8px;font-weight:700}
+.k{background:var(--khs);color:var(--kh);border-radius:8px;padding:0 8px;font-weight:700}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.row>button{flex:1;min-width:90px}
+.note{color:var(--mut);font-size:.95rem}
+.chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:10px 0}
+.chip{font-size:1.5rem;padding:4px 14px;border:2px solid var(--ln);border-radius:10px;background:var(--pn)}
+.chip.m{border-color:var(--mb)}.chip.k{border-color:var(--kh)}
+.res{padding:10px;border-radius:8px;margin-top:10px;background:var(--bg)}
+.good{color:var(--ok);font-weight:700}.bad{color:var(--no);font-weight:700}
+.opt{display:block;width:100%;text-align:right;margin-top:6px}
+.opt.right{border-color:var(--ok);background:var(--mbs)}.opt.wrong{border-color:var(--no)}
+.bub{max-width:90%;padding:8px 12px;border-radius:14px;margin:8px 0;border:1px solid var(--ln);font-size:1.1rem;line-height:1.8}
+.bub.npc{background:var(--pn);margin-inline-end:auto}
+.bub.me{background:var(--mbs);margin-inline-start:auto}
+.bub small{color:var(--mut)}
+.meter{color:var(--kh);letter-spacing:2px}
+#stage svg{width:100%;height:auto;display:block;border-radius:10px;border:1px solid var(--ln);margin:8px 0}
+@keyframes bn{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes pop{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:scale(1)}}
+.ball{animation:bn .8s ease-in-out infinite}
+.pop{animation:pop .4s ease-out;transform-box:fill-box;transform-origin:center}
+@keyframes br{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.018)}}
+@keyframes bl{0%,90%,100%{transform:scaleY(1)}94%{transform:scaleY(.1)}}
+@keyframes tk{0%,100%{transform:scaleY(.25)}50%{transform:scaleY(1.1)}}
+@keyframes gs{0%,100%{transform:rotate(0)}50%{transform:rotate(-38deg)}}
+@keyframes nd{0%,100%{transform:rotate(0)}50%{transform:rotate(2.5deg)}}
+.br{animation:br 3.6s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+.blink{animation:bl 4.2s infinite;transform-box:fill-box;transform-origin:50% 50%}
+.talk{animation:tk .28s infinite;transform-box:fill-box;transform-origin:50% 50%}
+.gest{animation:gs 1.1s ease-in-out infinite;transform-box:fill-box;transform-origin:20% 0%}
+.nod{animation:nd .9s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+@media (prefers-reduced-motion:reduce){.ball,.pop,.br,.blink,.talk,.gest,.nod{animation:none}}
+.hide{display:none}
+</style>
+</head>
+<body>
+<main>
+<h1>المبتدأ والخبر</h1>
+<p class="note" style="margin:0 0 10px">الجملة الاسمية: تبدأ باسم مرفوع هو <span class="m">المبتدأ</span> ويتمّ معناها بـ <span class="k">الخبر</span>.</p>
+<nav id="tabs" role="tablist"></nav>
+
+<section id="t0"></section>
+<section id="t1" class="hide"></section>
+<section id="t2" class="hide"></section>
+<section id="t3" class="hide"></section>
+<section id="t4" class="hide"></section>
+</main>
+
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+window.onerror=function(m,u,l){var b=document.getElementById('err');if(!b){b=document.createElement('div');b.id='err';b.style.cssText='background:#c0392b;color:#fff;padding:8px;margin:8px 0;border-radius:8px;font-size:.85rem;direction:ltr';document.querySelector('main').insertBefore(b,document.querySelector('main').firstChild)}b.textContent='Error: '+m+' (line '+l+')'};
+function shuf(n){var a=[],i,j,t;for(i=0;i<n;i++)a.push(i);for(i=n-1;i>0;i--){j=Math.floor(Math.random()*(i+1));t=a[i];a[i]=a[j];a[j]=t}return a}
+var names=["الشرح","حلّل الجملة","مختبر المطابقة","اختبر نفسك","قصة المكتبة"];
+names.forEach(function(n,i){var b=document.createElement('button');b.textContent=n;b.setAttribute('role','tab');b.onclick=function(){show(i)};b.id='tb'+i;$('tabs').appendChild(b)});
+function show(i){stopAll();who=null;for(var j=0;j<5;j++){$('t'+j).classList.toggle('hide',j!==i);$('tb'+j).classList.toggle('on',j===i)}}
+function sp(c,t){return '<span class="'+c+'">'+t+'</span>'}
+
+/* ---------- 1) الشرح ---------- */
+var MT=[
+["اسم ظاهر",sp('m','الصدقُ')+' '+sp('k','منجاةٌ'),"الأصل في المبتدأ أن يكون اسمًا ظاهرًا مرفوعًا."],
+["ضمير منفصل",sp('m','هو')+' '+sp('k','مجتهدٌ'),"الضمائر المنفصلة: أنا، نحن، أنتَ، هو، هي، هم... مبنية في محل رفع مبتدأ."],
+["اسم إشارة",sp('m','هذا')+' '+sp('k','كتابٌ'),"اسم الإشارة مبني في محل رفع مبتدأ."],
+["اسم موصول",sp('m','الذي')+' يجتهدُ '+sp('k','ناجحٌ'),"الاسم الموصول مبني في محل رفع مبتدأ، وجملة الصلة لا محل لها من الإعراب."]];
+var KT=[
+["مفرد",sp('m','الطالبُ')+' '+sp('k','مجتهدٌ'),"الخبر المفرد ما ليس جملة ولا شبه جملة، وهو مرفوع."],
+["جملة اسمية",sp('m','الحديقةُ')+' '+sp('k','أزهارُها جميلةٌ'),"الجملة الاسمية في محل رفع خبر."],
+["جملة فعلية",sp('m','الولدُ')+' '+sp('k','يكتبُ الدرسَ'),"الجملة الفعلية في محل رفع خبر."],
+["شبه جملة",sp('m','الكتابُ')+' '+sp('k','على الطاولةِ'),"الجار والمجرور أو الظرف، ويتعلقان بمحذوف تقديره (موجود/كائن) خبر المبتدأ."]];
+function explorer(id,title,data){
+ var h='<div class="card"><h2>'+title+'</h2><div class="row" id="'+id+'b"></div><div class="sent" id="'+id+'s"></div><div class="note" id="'+id+'n"></div></div>';
+ return {html:h,init:function(){data.forEach(function(d,i){var b=document.createElement('button');b.textContent=d[0];b.onclick=function(){pick(i)};$(id+'b').appendChild(b)});
+  function pick(i){[].forEach.call($(id+'b').children,function(c,j){c.classList.toggle('on',i===j)});$(id+'s').innerHTML=data[i][1];$(id+'n').textContent=data[i][2]}pick(0)}}
+}
+var e1=explorer('mt','أنواع المبتدأ',MT),e2=explorer('kt','أنواع الخبر',KT);
+$('t0').innerHTML='<div class="card"><h2>القاعدة</h2><p style="margin:0">كلٌّ من المبتدأ والخبر <b>مرفوع</b>. علامات الرفع: الضمة في المفرد وجمع التكسير وجمع المؤنث السالم، والألف في المثنى، والواو في جمع المذكر السالم.</p><p class="sent">'+sp('m','العلمُ')+' '+sp('k','نورٌ')+'</p><p class="note" style="margin:0">الخبر يطابق المبتدأ في النوع (مذكر/مؤنث) والعدد (مفرد/مثنى/جمع) إذا كان مفردًا. جرّب ذلك في «مختبر المطابقة».</p></div>'+e1.html+e2.html;
+e1.init();e2.init();
+
+/* ---------- 2) حلّل الجملة ---------- */
+var S=[
+{w:["العِلمُ","نورٌ"],m:[0],k:[1],t:"خبر مفرد",e:"العلمُ: مبتدأ مرفوع وعلامة رفعه الضمة. نورٌ: خبر مرفوع وعلامة رفعه الضمة."},
+{w:["الطالبانِ","مجتهدانِ"],m:[0],k:[1],t:"خبر مفرد",e:"الطالبانِ: مبتدأ مرفوع وعلامة رفعه الألف لأنه مثنى. مجتهدانِ: خبر مرفوع وعلامة رفعه الألف لأنه مثنى."},
+{w:["المؤمنونَ","صادقونَ"],m:[0],k:[1],t:"خبر مفرد",e:"المؤمنونَ: مبتدأ مرفوع وعلامة رفعه الواو لأنه جمع مذكر سالم. صادقونَ: خبر مرفوع وعلامة رفعه الواو."},
+{w:["هذا","كتابٌ"],m:[0],k:[1],t:"خبر مفرد",e:"هذا: اسم إشارة مبني على السكون في محل رفع مبتدأ. كتابٌ: خبر مرفوع وعلامة رفعه الضمة."},
+{w:["المعلمُ","في","الصفِّ"],m:[0],k:[1,2],t:"خبر شبه جملة",e:"المعلمُ: مبتدأ مرفوع. في الصفِّ: جار ومجرور متعلقان بمحذوف خبر المبتدأ."},
+{w:["الحديقةُ","أزهارُها","جميلةٌ"],m:[0],k:[1,2],t:"خبر جملة اسمية",e:"الحديقةُ: مبتدأ أول. أزهارُها جميلةٌ: جملة اسمية (مبتدأ ثانٍ وخبره) في محل رفع خبر المبتدأ الأول."},
+{w:["الولدُ","يكتبُ","الدرسَ"],m:[0],k:[1,2],t:"خبر جملة فعلية",e:"الولدُ: مبتدأ مرفوع. يكتبُ الدرسَ: جملة فعلية في محل رفع خبر."},
+{w:["الصدقُ","يهدي","إلى","البرِّ"],m:[0],k:[1,2,3],t:"خبر جملة فعلية",e:"الصدقُ: مبتدأ مرفوع. يهدي إلى البرِّ: جملة فعلية في محل رفع خبر."}];
+var si=0,mode='m',sel,done;
+$('t1').innerHTML='<div class="card"><h2>حدّد المبتدأ والخبر</h2><p class="note" style="margin:0">اختر الدور ثم المس الكلمات. المس الكلمة مرة أخرى لإلغائها.</p><div class="row" style="margin-top:8px"><button id="bm" class="on">المبتدأ</button><button id="bk">الخبر</button></div><div class="chips" id="ch"></div><div class="row"><button id="ck">تحقق</button><button id="nx">الجملة التالية</button></div><div class="res hide" id="rs"></div></div>';
+function load(){sel={m:[],k:[]};done=false;$('rs').classList.add('hide');draw()}
+function draw(){var c=$('ch');c.innerHTML='';S[si].w.forEach(function(w,i){var b=document.createElement('button');b.className='chip'+(sel.m.indexOf(i)>-1?' m':sel.k.indexOf(i)>-1?' k':'');b.textContent=w;b.onclick=function(){if(done)return;var o=mode==='m'?'k':'m';sel[o]=sel[o].filter(function(x){return x!==i});var p=sel[mode].indexOf(i);if(p>-1)sel[mode].splice(p,1);else sel[mode].push(i);draw()};c.appendChild(b)})}
+function same(a,b){return a.length===b.length&&a.every(function(x){return b.indexOf(x)>-1})}
+$('bm').onclick=function(){mode='m';$('bm').classList.add('on');$('bk').classList.remove('on')};
+$('bk').onclick=function(){mode='k';$('bk').classList.add('on');$('bm').classList.remove('on')};
+$('ck').onclick=function(){var s=S[si],ok=same(sel.m,s.m)&&same(sel.k,s.k);done=true;
+ var r=$('rs');r.classList.remove('hide');
+ r.innerHTML=(ok?'<span class="good">أحسنت، إجابة صحيحة.</span>':'<span class="bad">راجع الإجابة. الصحيح موضّح بالألوان.</span>')+'<br><b>النوع:</b> '+s.t+'<br>'+s.e;
+ sel={m:s.m.slice(),k:s.k.slice()};draw()};
+$('nx').onclick=function(){si=(si+1)%S.length;load()};
+load();
+
+/* ---------- 3) مختبر المطابقة ---------- */
+var L=[
+["المعلمُ","مجتهدٌ","مفرد مذكر","الضمة"],["المعلمةُ","مجتهدةٌ","مفرد مؤنث","الضمة"],
+["المعلمانِ","مجتهدانِ","مثنى مذكر","الألف"],["المعلمتانِ","مجتهدتانِ","مثنى مؤنث","الألف"],
+["المعلمونَ","مجتهدونَ","جمع مذكر سالم","الواو"],["المعلماتُ","مجتهداتٌ","جمع مؤنث سالم","الضمة"]];
+$('t2').innerHTML='<div class="card"><h2>اختر المبتدأ وانظر كيف يتغير الخبر</h2><div class="row" id="lb"></div><div class="sent" id="ls"></div><div class="res" id="lr"></div></div>';
+L.forEach(function(d,i){var b=document.createElement('button');b.textContent=d[0];b.onclick=function(){lp(i)};$('lb').appendChild(b)});
+function lp(i){var d=L[i];[].forEach.call($('lb').children,function(c,j){c.classList.toggle('on',i===j)});
+ $('ls').innerHTML=sp('m',d[0])+' '+sp('k',d[1]);
+ $('lr').innerHTML='المبتدأ والخبر هنا: <b>'+d[2]+'</b>.<br><b>الإعراب:</b> '+d[0]+': مبتدأ مرفوع وعلامة رفعه '+d[3]+'. '+d[1]+': خبر مرفوع وعلامة رفعه '+d[3]+'.'}
+lp(0);
+
+/* ---------- 4) اختبر نفسك ---------- */
+var Q=[
+["ما نوع الخبر في: الطالبُ يقرأُ الكتابَ؟",["مفرد","جملة اسمية","جملة فعلية","شبه جملة"],2],
+["ما علامة رفع المبتدأ في: المعلمانِ حاضرانِ؟",["الضمة","الألف","الواو","الياء"],1],
+["أي الجمل الآتية مطابقة؟",["الطالباتُ مجتهدونَ","الطالباتُ مجتهداتٌ","الطالبانِ مجتهدٌ"],1],
+["الخبر في: الكتابُ على الطاولةِ هو:",["مفرد","جملة فعلية","شبه جملة","جملة اسمية"],2],
+["حكم المبتدأ الإعرابي دائمًا:",["مرفوع","منصوب","مجرور","مجزوم"],0],
+["إعراب (هذا) في: هذا كتابٌ:",["مبتدأ مبني في محل رفع","فاعل","خبر","مفعول به"],0],
+["نوع الخبر في: الحديقةُ أزهارُها جميلةٌ:",["مفرد","جملة اسمية","جملة فعلية","شبه جملة"],1],
+["علامة رفع (المسلمونَ) في: المسلمونَ إخوةٌ:",["الضمة","الألف","الواو","الفتحة"],2]];
+var qi=0,score=0;
+function qd(){var box=$('t3');
+ if(qi>=Q.length){box.innerHTML='<div class="card"><h2>النتيجة: '+score+' من '+Q.length+'</h2><p>'+(score>=7?'ممتاز، أتقنتَ الدرس.':score>=5?'جيد، راجع أنواع الخبر ثم أعد المحاولة.':'أعد قراءة الشرح ثم حاول مجددًا.')+'</p><button id="rq">إعادة الاختبار</button></div>';$('rq').onclick=function(){qi=0;score=0;qd()};return}
+ var q=Q[qi];box.innerHTML='<div class="card"><p class="note" style="margin:0">السؤال '+(qi+1)+' من '+Q.length+'</p><h2>'+q[0]+'</h2><div id="qo"></div><div class="res hide" id="qf"></div></div>';
+ shuf(q[1].length).forEach(function(i){var o=q[1][i],b=document.createElement('button');b.className='opt';b.textContent=o;b.setAttribute('data-i',i);b.onclick=function(){
+  [].forEach.call($('qo').children,function(c){c.disabled=true;if(+c.getAttribute('data-i')===q[2])c.classList.add('right')});
+  var ok=i===q[2];if(ok)score++;else b.classList.add('wrong');
+  var f=$('qf');f.classList.remove('hide');f.innerHTML='<span class="'+(ok?'good':'bad')+'">'+(ok?'صحيح':'خطأ، الصواب: '+q[1][q[2]])+'</span><br><button id="qn" style="margin-top:8px">التالي</button>';
+  $('qn').onclick=function(){qi++;qd()}};$('qo').appendChild(b)})}
+qd();
+
+/* ---------- 5) قصة المكتبة ---------- */
+function T(a,b){return '<span class="m">'+a+'</span> <span class="k">'+b+'</span>'}
+var SC=[
+{n:"أهلًا بك يا يوسف! جئتَ مبكرًا اليوم. كيف ترى المكتبة الآن؟",c:"تريد أن تصف المكتبة بأنها هادئة.",t:T('المكتبةُ','{}'),o:["هادئةٌ","هادئٌ","هادئينَ","هادئةً"],a:0,w:"الخبر المفرد يطابق المبتدأ (المكتبة: مفرد مؤنث) ويكون مرفوعًا بالضمة: هادئةٌ.",g:"وصفٌ دقيق، فالمكتبة هادئة فعلًا.",b:"لم يتضح لي قصدك تمامًا، لكن فلنتابع."},
+{n:"أرى ولدين عند النافذة. ماذا يفعلان؟",c:"تقول إن الولدين يلعبان (خبر جملة فعلية).",t:T('الولدانِ','{}'),o:["يلعبانِ","يلعبُ","يلعبنَ","يلعبونَ"],a:0,w:"الفعل المسند إلى المثنى المذكر يكون: يلعبانِ، والجملة الفعلية في محل رفع خبر.",g:"نعم، يلعبان بهدوء.",b:"همم، الفعل لا يناسب الولدين. فلنتابع."},
+{n:"وأين يلعبان؟",c:"تقول إنهما في الساحة (خبر شبه جملة).",t:T('الولدانِ','{}'),o:["في الساحةِ","في الساحةُ","في الساحةَ","على الساحةُ"],a:0,w:"الجار والمجرور شبه جملة خبر، والاسم بعد حرف الجر مجرور: في الساحةِ.",g:"فهمتُ، إنهما في الساحة.",b:"لم أفهم جيدًا أين هما. فلنتابع."},
+{n:"ما هذا الكتاب الذي تحمله؟",c:"تشير إلى كتاب واحد قريب منك (مذكر).",t:T('{}','كتابٌ عن الفضاء'),o:["هذا","هذه","هذان","أولئك"],a:0,w:"اسم الإشارة للمفرد المذكر القريب: هذا، وهو مبني في محل رفع مبتدأ.",g:"كتاب عن الفضاء! اختيار رائع.",b:"عفوًا، لم أفهم إلى ماذا تشير. فلنتابع."},
+{n:"جميل. وهل طالبات صفك مستعدات للمسابقة؟",c:"المبتدأ جمع مؤنث سالم، وتريد وصفه بالاجتهاد.",t:T('الطالباتُ','{}'),o:["مجتهداتٌ","مجتهدونَ","مجتهدٌ","مجتهداتٍ"],a:0,w:"الخبر يطابق جمع المؤنث السالم ويُرفع بالضمة: مجتهداتٌ.",g:"ممتاز، سيكون صفكم قويًا.",b:"لا أظنني فهمتُ قصدك. فلنتابع."},
+{n:"والحديقة خلف المكتبة، كيف هي؟",c:"تريد أن تقول إن أزهارها جميلة (خبر جملة اسمية).",t:T('الحديقةُ','{}'),o:["أزهارُها جميلةٌ","أزهارِها جميلةٌ","أزهارُها جميلةً","جميلةٌ أزهارَها"],a:0,w:"جملة اسمية: أزهارُها مبتدأ ثانٍ مرفوع، وجميلةٌ خبره، والجملة كلها في محل رفع خبر.",g:"وصف جميل، سنزورها بعد المسابقة.",b:"عبارتك غامضة قليلًا. فلنتابع."},
+{n:"هل المعلمان موجودان في القاعة؟",c:"المبتدأ مثنى مذكر مرفوع.",t:T('المعلمانِ','{}'),o:["موجودانِ","موجودينِ","موجودونَ","موجودٌ"],a:0,w:"الخبر المفرد يطابق المثنى ويُرفع بالألف: موجودانِ.",g:"حسنًا، سأذهب إليهما.",b:"لم أستطع تحديد من هم الموجودون. فلنتابع."},
+{n:"أخيرًا: كيف كان المتسابقون في التصفيات؟",c:"المبتدأ جمع مذكر سالم، وتريد وصفهم بالتميز.",t:T('المتسابقونَ','{}'),o:["متميزونَ","متميزينَ","متميزٌ","متميزاتٌ"],a:0,w:"الخبر يطابق جمع المذكر السالم ويُرفع بالواو: متميزونَ.",g:"رائع! يبدو أن المنافسة قوية.",b:"عفوًا، لم أفهم. حان وقت المسابقة."}];
+
+function C(o){
+ var sk=o.skin,sd=o.sd,m=o.mood||'n',hc=o.hair||'#222',e='';
+ e+='<g transform="translate('+o.x+' '+(o.y||214)+') scale('+o.s+')"><ellipse rx="26" ry="4" fill="#000" opacity=".18"/><g class="br" style="animation-delay:'+(o.d||0)+'s">';
+ [-1,1].forEach(function(d){e+='<rect x="'+(d*7.5-6)+'" y="-54" width="12" height="48" rx="4" fill="'+o.bot+'"/><ellipse cx="'+(d*9)+'" cy="-3" rx="11" ry="4.5" fill="'+o.sh+'"/>'});
+ e+='<rect x="-20" y="-104" width="40" height="56" rx="13" fill="'+o.top+'"/>';
+ if(o.tie)e+='<path d="M-7 -104 L0 -94 L7 -104Z" fill="#fff"/><path d="M0 -97 L-3.5 -90 L-2 -66 L0 -62 L2 -66 L3.5 -90Z" fill="#8b1e2d"/><path d="M-8 -104 L0 -88 L-12 -80Z M8 -104 L0 -88 L12 -80Z" fill="#2c3a58"/>';
+ if(o.kid)e+='<rect x="-20" y="-84" width="40" height="6" fill="#fff" opacity=".3"/>';
+ e+='<rect x="-5" y="-110" width="10" height="10" fill="'+sd+'"/>';
+ e+='<g><path d="M-20 -98 Q-28 -78 -25 -58" stroke="'+o.top+'" stroke-width="9" stroke-linecap="round" fill="none"/><circle cx="-25" cy="-55" r="4.6" fill="'+sk+'"/></g>';
+ e+='<g class="'+(o.talk?'gest':'')+'"><path d="M20 -98 Q28 -78 25 -58" stroke="'+o.top+'" stroke-width="9" stroke-linecap="round" fill="none"/><circle cx="25" cy="-55" r="4.6" fill="'+sk+'"/></g>';
+ e+='<g class="'+(o.talk?'nod':'')+'">';
+ if(o.scarf)e+='<path d="M-18 -118 Q-19 -143 0 -143 Q19 -143 18 -118 Q19 -102 11 -98 L-11 -98 Q-19 -102 -18 -118Z" fill="'+o.scarf+'"/>';
+ else e+='<circle cx="-13" cy="-119" r="3" fill="'+sd+'"/><circle cx="13" cy="-119" r="3" fill="'+sd+'"/>';
+ e+='<ellipse cy="-120" rx="13" ry="15" fill="'+sk+'"/>';
+ if(!o.scarf)e+=o.kid?'<path d="M-14 -120 Q-17 -141 0 -140 Q17 -141 14 -120 Q12 -131 4 -129 Q0 -134 -5 -129 Q-12 -131 -14 -120Z" fill="'+hc+'"/>':'<path d="M-14 -121 Q-16 -141 0 -141 Q16 -141 14 -121 Q13 -131 6 -133 Q-4 -127 -14 -121Z" fill="'+hc+'"/>';
+ e+='<g class="blink" style="animation-delay:'+(o.d||0)+'s"><ellipse cx="-5" cy="-121" rx="3.4" ry="3.2" fill="#fff"/><ellipse cx="5" cy="-121" rx="3.4" ry="3.2" fill="#fff"/><circle cx="-5" cy="-121" r="1.8" fill="#1c1c1c"/><circle cx="5" cy="-121" r="1.8" fill="#1c1c1c"/><circle cx="-4.4" cy="-121.7" r=".6" fill="#fff"/><circle cx="5.6" cy="-121.7" r=".6" fill="#fff"/></g>';
+ var br=m==='h'?['M-9 -129 Q-5 -132 -2 -129','M2 -129 Q5 -132 9 -129']:m==='c'?['M-9 -126 L-2 -130','M2 -127 Q5 -131 9 -128']:['M-9 -127 L-2 -127','M2 -127 L9 -127'];
+ e+='<path d="'+br[0]+' '+br[1]+'" stroke="'+(o.scarf?'#3a2a1a':hc)+'" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M0 -120 Q2.5 -116 0 -115" stroke="'+sd+'" stroke-width="1.2" fill="none"/>';
+ if(o.must)e+='<path d="M-6 -113.5 Q-3 -116 0 -114.5 Q3 -116 6 -113.5 Q3 -112 0 -113 Q-3 -112 -6 -113.5Z" fill="'+hc+'"/>';
+ e+=o.talk?'<ellipse class="talk" cx="0" cy="-109" rx="3.6" ry="2.4" fill="#7a2a2a"/>':'<path d="'+(m==='h'?'M-5 -111 Q0 -105 5 -111':m==='c'?'M-4 -107 Q0 -111 4 -107':'M-4 -109 L4 -109')+'" stroke="#7a2a2a" stroke-width="1.6" fill="none" stroke-linecap="round"/>';
+ if(o.glasses)e+='<circle cx="-5" cy="-121" r="5.2" fill="#fff" fill-opacity=".15" stroke="#2b2b2b" stroke-width="1.2"/><circle cx="5" cy="-121" r="5.2" fill="#fff" fill-opacity=".15" stroke="#2b2b2b" stroke-width="1.2"/><path d="M-0.2 -121.5H0.2M-10.2 -121L-13 -120M10.2 -121L13 -120" stroke="#2b2b2b" stroke-width="1.2"/>';
+ e+='</g>';
+ if(m==='h')e+='<text class="pop" x="30" y="-134" font-size="20" fill="#e9a400">★</text>';
+ if(m==='c')e+='<text class="pop" x="30" y="-134" font-size="22" fill="#c0392b" font-weight="700">؟</text>';
+ return e+'</g></g>'}
+function stage(i,ym,lm,ex){
+ LS=[i,ym,lm,ex];var T=who==='l'&&!ex,Y=who==='y',cols=['#c0392b','#2e86ab','#e0a800','#3b8f5a','#7b4fa0','#d9692c'],sc2=['#c0392b','#2e86ab','#3b8f5a','#d9692c'];
+ var s='<svg viewBox="0 0 360 240" role="img" aria-label="مشهد المكتبة"><defs><linearGradient id="wl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4ead8"/><stop offset="1" stop-color="#e5d3b3"/></linearGradient><linearGradient id="lb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".4"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs><rect width="360" height="240" fill="url(#wl)"/><rect y="205" width="360" height="35" fill="#b98b5e"/><path d="M0 222H360M70 205L50 240M140 205L125 240M210 205L205 240M280 205L285 240" stroke="#a37a50" stroke-width="1"/><ellipse cx="180" cy="224" rx="140" ry="11" fill="#8e3b46" opacity=".35"/>';
+ s+='<rect x="8" y="30" width="96" height="175" fill="#6b4526"/><rect x="11" y="33" width="90" height="169" fill="#4a2f18"/>';
+ for(var r=0;r<4;r++){var b=72+r*43;s+='<rect x="10" y="'+b+'" width="92" height="4" fill="#8a5d34"/>';for(var k=0;k<8;k++){var h=20+((k*7+r*5)%12);s+='<rect x="'+(13+k*11)+'" y="'+(b-h)+'" width="9.5" height="'+h+'" rx="1" fill="'+cols[(k+r)%6]+'"/>'}}
+ s+='<rect x="240" y="12" width="100" height="26" rx="5" fill="#fff8e7" stroke="#7a5230" stroke-width="2"/><text x="290" y="30" font-size="13" text-anchor="middle" fill="#3a2a1a">مكتبة المدرسة</text>';
+ var kids=i===1||i===2,gd=i===5;
+ s+='<rect x="138" y="30" width="84" height="70" fill="#9fd3ee"/><circle cx="208" cy="46" r="7" fill="#ffd54a"/><ellipse cx="160" cy="48" rx="13" ry="5" fill="#fff" opacity=".85"/>';
+ if(kids||gd)s+='<rect x="138" y="86" width="84" height="14" fill="#6fbf73"/>';
+ if(kids){[160,200].forEach(function(x,n){s+='<circle cx="'+x+'" cy="66" r="5" fill="#f1c9a0"/><rect x="'+(x-5)+'" y="71" width="10" height="14" rx="3" fill="'+(n?'#e67e22':'#8e44ad')+'"/>'});s+='<circle class="ball" cx="180" cy="62" r="4" fill="#e74c3c"/>';if(i===2)s+='<text x="180" y="97" font-size="9" text-anchor="middle" fill="#fff">الساحة</text>'}
+ if(gd){var fc=['#e84a5f','#ffd54a','#ff8c42','#c06ad8','#e84a5f'];for(var f=0;f<5;f++){var fx=150+f*15;s+='<path d="M'+fx+' 86V74" stroke="#2f7d3a" stroke-width="2"/><circle cx="'+fx+'" cy="71" r="5" fill="'+fc[f]+'"/>'}s+='<text x="180" y="97" font-size="9" text-anchor="middle" fill="#fff">الحديقة</text>'}
+ s+='<rect x="138" y="30" width="84" height="70" fill="none" stroke="#7a5230" stroke-width="4"/><path d="M138 100L222 100L275 205L95 205Z" fill="url(#lb)"/>';
+ if(i===0)s+='<text x="180" y="190" font-size="26" text-anchor="middle">🤫</text>';
+ if(i===4){s+='<rect x="124" y="196" width="112" height="6" rx="2" fill="#7a5230"/><text x="180" y="132" font-size="11" text-anchor="middle" fill="#3a2a1a">طالبات الصف</text>';for(var q=0;q<4;q++)s+=C({x:142+q*25,y:198,s:.42,skin:'#ead0b4',sd:'#d3b08e',scarf:sc2[q],top:sc2[(q+1)%4],bot:'#3b4a6b',sh:'#333',d:q*.4})}
+ if(i===6){s+='<text x="180" y="138" font-size="11" text-anchor="middle" fill="#3a2a1a">المعلمان</text>'+C({x:160,s:.5,skin:'#d9a47a',sd:'#c08b62',hair:'#2a2a2a',top:'#556b8a',bot:'#2a2f3a',sh:'#161616',tie:1,d:.2})+C({x:200,s:.5,skin:'#e3b48c',sd:'#c99a72',hair:'#6b6b6b',top:'#7a5c4a',bot:'#2a2f3a',sh:'#161616',glasses:1,d:.9})}
+ if(i===7){s+='<rect x="140" y="176" width="26" height="29" fill="#b0b7bd"/><rect x="166" y="160" width="28" height="45" fill="#e0a800"/><rect x="194" y="184" width="26" height="21" fill="#c58a50"/>';[[153,176,'#2e86ab'],[180,160,'#3b8f5a'],[207,184,'#d9692c']].forEach(function(p,n){s+=C({x:p[0],y:p[1],s:.42,kid:1,skin:'#e8b98f',sd:'#cf9a70',hair:'#1f1510',top:p[2],bot:'#3b4a6b',sh:'#eee',d:n*.5})});s+='<text x="240" y="203" font-size="26">'+(ex==='t'?'🏆':'📚')+'</text>'}
+ s+=C({x:78,s:.8,kid:1,skin:'#e8b98f',sd:'#cf9a70',hair:'#1f1510',top:'#2e86ab',bot:'#3b4a6b',sh:'#eee',mood:ym,talk:Y,d:.2})+C({x:292,s:1.02,skin:'#d9a47a',sd:'#c08b62',hair:'#2a2a2a',top:'#3d4f73',bot:'#2a2f3a',sh:'#161616',tie:1,glasses:1,must:1,mood:lm,talk:T,d:.6});
+ if(i===3)s+='<g transform="rotate(-10 114 170)"><rect x="100" y="152" width="28" height="36" rx="2" fill="#1e3a8a"/><circle cx="114" cy="168" r="7" fill="#f4a261"/><ellipse cx="114" cy="168" rx="12" ry="3" fill="none" stroke="#fff" stroke-width="1.5"/><circle cx="105" cy="159" r="1" fill="#fff"/><circle cx="123" cy="178" r="1" fill="#fff"/></g>';
+ s+='<text x="78" y="234" font-size="13" text-anchor="middle" fill="#3a2a1a">يوسف</text><text x="292" y="234" font-size="13" text-anchor="middle" fill="#3a2a1a">الأستاذ سامي</text>';
+ $('stage').innerHTML=s+'</svg>'}
+
+var snd=true,AC=null;
+function ctx(){if(!AC){var K=window.AudioContext||window.webkitAudioContext;if(K)AC=new K()}if(AC&&AC.state==='suspended')AC.resume();return AC}
+function tone(f,t0,d,ty,v){var c=ctx();if(!c||!snd)return;var o=c.createOscillator(),g=c.createGain(),t=c.currentTime+t0;o.type=ty;o.frequency.value=f;g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(v,t+.02);g.gain.exponentialRampToValueAtTime(0.0001,t+d);o.connect(g);g.connect(c.destination);o.start(t);o.stop(t+d+.05)}
+function good(){[523,659,784,1047].forEach(function(f,n){tone(f,n*.11,.28,'triangle',.18)})}
+function bad(){tone(220,0,.25,'sawtooth',.12);tone(165,.2,.4,'sawtooth',.12)}
+function plain(h){return h.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim()}
+function arVoice(){var v=window.speechSynthesis?speechSynthesis.getVoices():[];return v.filter(function(x){return /^ar/i.test(x.lang)})[0]}
+var who=null,LS=[-1,'n','n'],cur=0,flushId=0,holdUntil=0,onl=null,chain=Promise.resolve();
+function setWho(w){who=w;stage.apply(null,LS)}
+function pickVoice(w){var all=speechSynthesis.getVoices(),sel=$(w==='y'?'vy':'vt'),uri=sel&&sel.value,v=uri&&all.filter(function(x){return x.voiceURI===uri})[0];if(v)return v;var ar=all.filter(function(x){return /^ar/i.test(x.lang)});return(ar.length>1&&w==='y')?ar[1]:ar[0]}
+function hasAr(){return !!(window.speechSynthesis&&speechSynthesis.getVoices().some(function(x){return /^ar/i.test(x.lang)}))}
+function stopAll(){cur++;flushId=cur;chain=Promise.resolve();if(onl)onl.pause();if(window.speechSynthesis)speechSynthesis.cancel()}
+function chunks(t){var out=[],c='';t.replace(/([.!؟?،])\s+/g,'$1\u0001').split('\u0001').forEach(function(p){while(p.length>170){var k=p.lastIndexOf(' ',170);if(k<1)k=170;if(c){out.push(c);c=''}out.push(p.slice(0,k));p=p.slice(k).trim()}if((c+' '+p).length>170){if(c)out.push(c);c=p}else c=(c+' '+p).trim()});if(c)out.push(c);return out}
+function playOne(q,w,id){return new Promise(function(res){if(id<flushId)return res();var d=false,a=new Audio('https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=ar&q='+encodeURIComponent(q));function fin(){if(!d){d=true;res()}}a.preservesPitch=false;a.webkitPreservesPitch=false;a.playbackRate=w==='y'?1.18:.92;onl=a;a.onplaying=function(){setWho(w)};a.onended=fin;a.onerror=function(){setWho(w);setTimeout(fin,Math.min(3000,q.length*70))};var p=a.play();if(p&&p.catch)p.catch(function(){a.onerror()})})}
+function playAll(t,w,id){return chunks(t).reduce(function(p,q){return p.then(function(){return playOne(q,w,id)})},Promise.resolve()).then(function(){if(id===cur)setWho(null)})}
+function speak(txt,w,flush){var id=++cur,t=plain(txt);
+ if(!snd){setWho(w);setTimeout(function(){if(id===cur)setWho(null)},Math.min(7000,t.length*70));return}
+ if(flush){if(window.speechSynthesis)speechSynthesis.cancel();if(onl)onl.pause();chain=Promise.resolve();flushId=id;holdUntil=Date.now()+150}
+ if(!hasAr()){chain=chain.then(function(){return playAll(t,w,id)});return}
+ setTimeout(function(){if(id<flushId)return;speechSynthesis.resume();
+  var u=new SpeechSynthesisUtterance(t);u.lang='ar-SA';var v=pickVoice(w);if(v){u.voice=v;if(v.lang)u.lang=v.lang}
+  u.rate=w==='y'?1:.88;u.pitch=w==='y'?1.4:.7;
+  u.onstart=function(){setWho(w)};u.onend=u.onerror=function(){if(id===cur)setWho(null)};
+  speechSynthesis.speak(u)},Math.max(0,holdUntil-Date.now()))}
+function vhint(){var el=$('vh');if(!el)return;var all=window.speechSynthesis?speechSynthesis.getVoices():[],ar=all.filter(function(x){return /^ar/i.test(x.lang)});
+ el.textContent=!window.speechSynthesis?'صوت الحوار سيُشغَّل عبر الإنترنت لأن هذه المعاينة لا تدعم النطق الصوتي. يلزم اتصال بالإنترنت.':all.length===0?'لم تُحمَّل أصوات النطق بعد. جرّب زر الاختبار في إعدادات الصوت.':!ar.length?'لا يوجد صوت عربي مثبّت في جهازك، لذلك سيُشغَّل صوت الحوار عبر الإنترنت (يلزم اتصال بالإنترنت).':'';
+ ['vt','vy'].forEach(function(id){var sel=$(id);if(!sel)return;var cv=sel.value;sel.innerHTML='<option value="">تلقائي</option>';all.slice().sort(function(a,b){return(/^ar/i.test(b.lang)?1:0)-(/^ar/i.test(a.lang)?1:0)}).forEach(function(v){var o=document.createElement('option');o.value=v.voiceURI;o.textContent=v.name+' ('+v.lang+')';sel.appendChild(o)});sel.value=cv});
+ var vi=$('vi');if(vi)vi.textContent='عدد الأصوات المتاحة: '+all.length+'، منها عربية: '+ar.length}
+if(window.speechSynthesis)speechSynthesis.onvoiceschanged=vhint;
+var sc=0,pts=0;
+$('t4').innerHTML='<div class="card"><h2>قصة: يومٌ في المكتبة</h2><div class="note">النقاط: <span class="meter" id="mt2"></span> <button id="snd" style="min-height:36px;padding:2px 10px;margin-inline-start:8px">🔊 الصوت: يعمل</button></div><div class="note" id="vh"></div><details style="margin:6px 0"><summary class="note">إعدادات الصوت واختباره</summary><div class="note" id="vi"></div><label class="note" style="display:block">صوت الأستاذ <select id="vt"></select></label><label class="note" style="display:block">صوت يوسف <select id="vy"></select></label><div class="row" style="margin:6px 0"><button id="tt">اختبر الأستاذ</button><button id="ty">اختبر يوسف</button></div><div class="note">إن لم تسمع شيئًا: ارفع صوت الوسائط. أندرويد: الإعدادات ثم اللغة والإدخال ثم تحويل النص إلى كلام ثم Google ثم تثبيت بيانات الصوت العربية. آيفون: الإعدادات ثم تسهيلات الاستخدام ثم المحتوى المنطوق ثم الأصوات ثم العربية.</div></details><div id="stage"></div><div id="chat"></div><div id="act"></div></div>';
+function meter(){$('mt2').textContent='★'.repeat(pts)+'☆'.repeat(SC.length-pts)}
+function bub(c,h){var d=document.createElement('div');d.className='bub '+c;d.innerHTML=h;$('chat').appendChild(d);d.scrollIntoView({block:'nearest',behavior:'smooth'})}
+function intro(){sc=0;pts=0;meter();stage(-1,'n','n');$('chat').innerHTML='';bub('npc','<small>الراوي</small><br>أنت يوسف، وقد جئتَ إلى المكتبة استعدادًا لمسابقة القراءة. سيحاورك الأستاذ سامي، وعليك في كل مرة اختيار التعبير الصحيح الذي يناسب السياق.');
+ $('act').innerHTML='<button class="opt on" id="go">ابدأ القصة</button>';$('go').onclick=scene}
+function scene(){
+ if(sc>=SC.length){fin();return}
+ var s=SC[sc];stage(sc,'n','n');bub('npc','<small>الأستاذ سامي</small><br>'+s.n);speak(s.n,'t',1);vhint();
+ $('act').innerHTML='<p class="note" style="margin:6px 0"><b>السياق:</b> '+s.c+'</p><div class="sent" style="font-size:1.4rem">'+s.t.replace('{}','______')+'</div><div id="so"></div><button class="opt" id="rpl">🔈 أعد الاستماع إلى السؤال</button>';$('rpl').onclick=function(){speak(s.n,'t',1)};
+ shuf(s.o.length).forEach(function(i){var b=document.createElement('button');b.className='opt';b.textContent=s.o[i];b.onclick=function(){pick(i)};$('so').appendChild(b)})}
+function pick(i){var s=SC[sc],ok=i===s.a;if(ok)pts++;meter();stage(sc,ok?'h':'n',ok?'h':'c');if(ok)good();else bad();speak(s.t.replace('{}',s.o[i]),'y',1);speak(ok?'أحسنت! '+s.g+' '+s.w:'ليس تمامًا. '+s.b+' الصواب: '+s.t.replace('{}',s.o[s.a])+'. '+s.w,'t');
+ bub('me','<small>يوسف</small><br>'+s.t.replace('{}',s.o[i]));
+ bub('npc','<small>الأستاذ سامي</small><br>'+(ok?s.g:s.b));
+ $('act').innerHTML='<div class="res"><span class="'+(ok?'good':'bad')+'">'+(ok?'اختيار صحيح':'اختيار غير مناسب')+'</span>'+(ok?'':'<br><b>الصواب:</b> '+s.t.replace('{}',s.o[s.a]))+'<br>'+s.w+'</div><button class="opt on" id="nx2">'+(sc===SC.length-1?'النهاية':'التالي')+'</button>';
+ $('nx2').onclick=function(){sc++;scene()}}
+function fin(){stage(7,pts>=4?'h':'n',pts>=4?'h':'c',pts>=7?'t':'b');var t=pts>=7?'أحسنتَ يا يوسف! فزتَ بلقب سفير القراءة.':pts>=4?'حصلتَ على المركز الثاني. راجع ما أخطأتَ فيه لتفوز في المرة القادمة.':'شاركتَ وتعلمتَ الكثير، لكنك تحتاج إلى مراجعة المبتدأ والخبر. عد إلى الشرح ثم أعد القصة.';
+ speak(t+' نتيجتك '+pts+' من '+SC.length,'t',1);if(pts>=4)good();else bad();bub('npc','<small>الراوي</small><br>'+t+'<br>نتيجتك: '+pts+' من '+SC.length);
+ $('act').innerHTML='<button class="opt on" id="rp">أعد القصة</button>';$('rp').onclick=intro}
+$('snd').onclick=function(){snd=!snd;this.textContent=snd?'🔊 الصوت: يعمل':'🔇 الصوت: متوقف';if(!snd){stopAll();setWho(null)}else good()};
+$('tt').onclick=function(){vhint();speak('مرحبًا، أنا الأستاذ سامي. هذا اختبار للصوت.','t',1)};
+$('ty').onclick=function(){speak('مرحبًا، أنا يوسف. هل تسمعني؟','y',1)};
+try{vhint();intro()}catch(e){$('t4').innerHTML+='<p class="bad">تعذّر تشغيل القصة: '+e.message+'</p>'}
+show(0);
+})();
+</script>
+</body>
+</html>
